@@ -21,13 +21,14 @@ export default function Home() {
         <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1.6rem", letterSpacing: "-0.02em", color: "#475569" }}>
           TriageIQ
         </span>
-        <a
-          href="mailto:hello@wikolabs.com?subject=TriageIQ — Demande de démo"
-          className="px-4 py-2 rounded-lg text-white text-sm font-semibold"
-          style={{ background: "#475569" }}
-        >
-          Voir la démo
-        </a>
+        <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
+          <a href="https://calendly.com/wikolabs" target="_blank" rel="noopener noreferrer" className="px-4 py-2 rounded-lg text-white text-sm font-semibold" style={{ background: "#475569" }}>
+            📅 Réserver un créneau →
+          </a>
+          <a href="https://wa.me/261386626100?text=Bonjour%2C%20je%20souhaite%20discuter%20de%20TriageIQ%20avec%20Wikolabs." target="_blank" rel="noopener noreferrer" className="px-4 py-2 rounded-lg text-white text-sm font-semibold" style={{ background: "#25d366", borderColor: "#25d366" }}>
+            💬 WhatsApp →
+          </a>
+        </div>
       </nav>
 
       {/* Hero */}
@@ -49,13 +50,14 @@ export default function Home() {
             </div>
           ))}
         </div>
-        <a
-          href="mailto:hello@wikolabs.com?subject=TriageIQ — Demande de démo"
-          className="inline-block px-7 py-3.5 rounded-lg text-white font-semibold text-lg"
-          style={{ background: "#475569" }}
-        >
-          Automatiser mon support →
-        </a>
+        <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
+          <a href="https://calendly.com/wikolabs" target="_blank" rel="noopener noreferrer" className="inline-block px-7 py-3.5 rounded-lg text-white font-semibold text-lg" style={{ background: "#475569" }}>
+            📅 Réserver un créneau →
+          </a>
+          <a href="https://wa.me/261386626100?text=Bonjour%2C%20je%20souhaite%20discuter%20de%20TriageIQ%20avec%20Wikolabs." target="_blank" rel="noopener noreferrer" className="inline-block px-7 py-3.5 rounded-lg text-white font-semibold text-lg" style={{ background: "#25d366", borderColor: "#25d366" }}>
+            💬 WhatsApp →
+          </a>
+        </div>
       </section>
 
       {/* Kanban Mockup */}
@@ -145,31 +147,20 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonial */}
-      <section className="max-w-2xl mx-auto px-6 py-16 text-center">
-        <blockquote>
-          <p className="text-xl text-slate-700 leading-relaxed mb-4">
-            &ldquo;On avait 400 tickets en backlog non classés. TriageIQ les a tous triés en 12 minutes. Nos SLA sont maintenant à 94% — contre 61% avant.&rdquo;
-          </p>
-          <footer className="text-sm font-semibold text-slate-500">
-            Marc D. — DSI, entreprise 800 salariés
-          </footer>
-        </blockquote>
-      </section>
-
       {/* CTA */}
       <section className="py-16 text-center" style={{ background: "#1e293b" }}>
         <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "2.2rem", color: "white" }} className="mb-3">
           Votre backlog, vidé. Vos SLA, respectés.
         </h2>
         <p className="text-slate-400 mb-8">Audit gratuit de votre flux tickets en 48h.</p>
-        <a
-          href="mailto:hello@wikolabs.com?subject=TriageIQ — Demande de démo"
-          className="inline-block px-8 py-4 rounded-lg font-semibold text-lg"
-          style={{ background: "#475569", color: "white" }}
-        >
-          Obtenir mon audit gratuit
-        </a>
+        <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
+          <a href="https://calendly.com/wikolabs" target="_blank" rel="noopener noreferrer" className="inline-block px-8 py-4 rounded-lg font-semibold text-lg" style={{ background: "#475569", color: "white" }}>
+            📅 Réserver un créneau →
+          </a>
+          <a href="https://wa.me/261386626100?text=Bonjour%2C%20je%20souhaite%20discuter%20de%20TriageIQ%20avec%20Wikolabs." target="_blank" rel="noopener noreferrer" className="inline-block px-8 py-4 rounded-lg font-semibold text-lg" style={{ background: "#25d366", borderColor: "#25d366" }}>
+            💬 WhatsApp →
+          </a>
+        </div>
       </section>
 
       <footer className="text-center py-6 text-sm text-slate-400 bg-white border-t border-slate-100">
