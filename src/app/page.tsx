@@ -1,4 +1,4 @@
-export default function Home() {
+﻿export default function Home() {
   const tickets = {
     critical: [
       { id: "T-0091", title: "Serveur prod DOWN", time: "2 min", sla: "15 min" },
@@ -164,7 +164,14 @@ export default function Home() {
       </section>
 
       <footer className="text-center py-6 text-sm text-slate-400 bg-white border-t border-slate-100">
-        &copy; 2025 TriageIQ — Un produit Wikolabs
+        <p>&copy; 2025 TriageIQ &mdash; Un produit Wikolabs</p>
+        <div className="flex flex-wrap justify-center gap-4 mt-2 text-xs text-slate-400">
+          <a href="mailto:team@wikolabs.com" className="hover:text-slate-600 transition-colors">team@wikolabs.com</a>
+          <span>·</span>
+          <a href="tel:+261386626100" className="hover:text-slate-600 transition-colors">+261 38 66 261 00</a>
+          <span>·</span>
+          <a href="https://calendly.com/wikolabs" target="_blank" rel="noopener noreferrer" className="hover:text-slate-600 transition-colors">Prendre RDV</a>
+        </div>
       </footer>
     </main>
   );
