@@ -1,0 +1,36 @@
+version: "3.9"
+
+# TriageIQ demo — production-ready POC.
+# 2 services orchestrated:
+#   - triageiq (Next.js frontend on host port 3009)
+#   - triageiq-backend (FastAPI Python, internal only on 8000)
+# Internal network so the frontend can reach the backend by service name.
+
+services:
+  triageiq-backend:
+    image: ghcr.io/wikolabs/triageiq-backend:latest
+    container_name: triageiq-backend
+    restart: unless-stopped
+    environment:
+      GROQ_API_KEY: ${GROQ_API_KEY:-}
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+    networks:
+      - triageiq-net
+
+  triageiq:
+    image: ghcr.io/wikolabs/triageiq:latest
+    container_name: triageiq
+    restart: unless-stopped
+    ports:
+      - "3009:3000"
+    environment:
+      BACKEND_URL: "http://triageiq-backend:8000"
+    depends_on:
+      - triageiq-backend
+    networks:
+      - triageiq-net
+
+networks:
+  triageiq-net:
+    name: triageiq-net
+    driver: bridge
