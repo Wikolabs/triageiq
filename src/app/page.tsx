@@ -1,178 +1,218 @@
-﻿export default function Home() {
-  const tickets = {
-    critical: [
-      { id: "T-0091", title: "Serveur prod DOWN", time: "2 min", sla: "15 min" },
-      { id: "T-0087", title: "Auth API 500 errors", time: "8 min", sla: "15 min" },
-    ],
-    high: [
-      { id: "T-0094", title: "Déploiement bloqué CI/CD", time: "22 min", sla: "2h" },
-      { id: "T-0089", title: "VPN inaccessible RH", time: "35 min", sla: "2h" },
-    ],
-    medium: [
-      { id: "T-0098", title: "Reset password Jira", time: "1h", sla: "8h" },
-      { id: "T-0096", title: "Accès Drive partagé", time: "1h20", sla: "8h" },
-    ],
-  };
+"use client";
+const P = {
+  name: "TriageIQ",
+  tagLabel: "Triage intelligent · Prioritisation IA · Zero friction",
+  taglines: ["Bons tickets.", "Bonnes equipes.", "Bon moment."],
+  taglineAccentIdx: 2,
+  desc: "TriageIQ analyse, classe et route chaque ticket vers le bon agent en millisecondes — priorite, urgence, expertise matchee automatiquement.",
+  accent: "#FB923C", accentDim: "rgba(251,146,60,0.1)", accentBorder: "rgba(251,146,60,0.25)", accentGlow: "rgba(251,146,60,0.12)",
+  waText: "TriageIQ",
+  navLinks: [{ label: "Fonctionnalites", href: "#features" }, { label: "Comment ca marche", href: "#process" }, { label: "Contact", href: "#cta" }],
+  metrics: [{ value: "3x", label: "resolution plus rapide" }, { value: "92%", label: "precision routage" }, { value: "-40%", label: "escalades inutiles" }, { value: "0ms", label: "latence triage" }],
+  features: [
+    { icon: "sort", title: "Classification IA multi-criteres", desc: "Priorite, urgence, type, sentiment, langue, produit — TriageIQ analyse chaque dimension en fraction de seconde pour un tri parfait." },
+    { icon: "target", title: "Routage par expertise", desc: "Chaque ticket est assigne a l'agent ayant la meilleure expertise, disponibilite et historique de resolution sur le sujet." },
+    { icon: "clock", title: "SLA automatique", desc: "Les delais sont geres selon la priorite. Alertes proactives avant que le SLA ne soit compromis." },
+  ],
+  steps: [
+    { num: "01", title: "Integration helpdesk en 1 clic", desc: "Zendesk, Freshdesk, Jira Service Desk, HubSpot — TriageIQ s'installe sans configuration manuelle des regles." },
+    { num: "02", title: "Modele IA entraine sur vos tickets", desc: "TriageIQ analyse vos 6 derniers mois de tickets pour apprendre vos categories, priorites et patterns de routage." },
+    { num: "03", title: "Triage autonome active", desc: "Chaque ticket est automatiquement classe et route. Vos agents recoivent uniquement les tickets qui correspondent a leur expertise." },
+  ],
+  testimonials: [
+    { quote: "Le temps de premiere reponse a chute de 4h a 45 minutes. TriageIQ route avec une precision que nos regles manuelles n'ont jamais atteinte.", author: "Nicolas F.", role: "Head of Support, Scale-up B2B" },
+    { quote: "Les mauvais routages ont quasiment disparu. Nos agents sont moins stresses et nos clients plus satisfaits. ROI en 3 semaines.", author: "Marie C.", role: "COO, SaaS RH" },
+  ],
+  ctaTitle: "Tickets tries, equipes efficaces",
+  ctaDesc: "Integration en 1 clic. Modele entraine sous 24h. Aucune carte bancaire.",
+  ctaPrimary: "Reserver un creneau",
+  footerTagline: "Triage IA pour equipes support",
+};
+
+export default function Page() {
+  const bg = "#04080F";
+  const bg2 = "#070D1B";
+  const card = "rgba(255,255,255,0.04)";
+  const border = "rgba(255,255,255,0.09)";
+  const gold = "#D4AF37";
+  const goldDim = "rgba(212,175,55,0.1)";
+  const goldBorder = "rgba(212,175,55,0.28)";
+  const txt1 = "#F0EDE6";
+  const txt2 = "#8B9DB5";
+  const txt3 = "#3C5068";
+  const { accent, accentDim, accentBorder, accentGlow } = P;
 
   return (
-    <main style={{ color: "#1e293b" }}>
-      {/* Nav */}
-      <nav className="flex items-center justify-between px-8 py-4 bg-white border-b border-slate-200">
-        <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1.6rem", letterSpacing: "-0.02em", color: "#475569" }}>
-          TriageIQ
+    <div style={{ minHeight: "100vh", background: bg, color: txt1 }}>
+      <style>{`
+        *, *::before, *::after { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+        @keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+        @keyframes pulseDot { 0%,100%{ opacity:1; transform:scale(1); } 50%{ opacity:.4; transform:scale(1.6); } }
+        .wk-card { transition: background .3s, border-color .3s, transform .35s cubic-bezier(.34,1.2,.64,1); }
+        .wk-card:hover { background: rgba(255,255,255,0.07) !important; border-color: ${accentBorder} !important; transform: translateY(-6px) !important; }
+        .wk-btn { transition: opacity .2s, transform .2s, box-shadow .2s; }
+        .wk-btn:hover { opacity:.9; transform:translateY(-2px); box-shadow:0 12px 32px rgba(212,175,55,.18); }
+        .wk-wa { transition: opacity .2s, transform .2s; }
+        .wk-wa:hover { opacity:.9; transform:translateY(-2px); }
+        .wk-nav-link { color: #8B9DB5; text-decoration:none; font-size:14px; font-weight:500; transition:color .2s; }
+        .wk-nav-link:hover { color: #F0EDE6; }
+        @media(max-width:640px){ .wk-hide-sm{ display:none!important; } .wk-hero-title{ font-size:2.4rem!important; } }
+      `}</style>
+
+      {/* NAVBAR */}
+      <nav style={{ position:"sticky", top:0, zIndex:100, background:"rgba(4,8,15,0.82)", backdropFilter:"blur(20px)", borderBottom:`1px solid ${border}`, padding:"0 40px", height:60, display:"flex", alignItems:"center", justifyContent:"space-between" }}>
+        <span style={{ fontSize:18, fontWeight:800, letterSpacing:"-0.5px", color:txt1 }}>
+          {P.name}<span style={{ color:gold }}>.</span>
         </span>
-        <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
-          <button data-cal-link="wikolabs-team/30min" data-cal-namespace="wk30min" data-cal-config='{"layout":"month_view"}' type="button" target="_blank" rel="noopener noreferrer" className="px-4 py-2 rounded-lg text-white text-sm font-semibold" style={{ background: "#475569" }}>
-            📅 Réserver un créneau →
+        <div style={{ display:"flex", gap:28, alignItems:"center" }}>
+          <div className="wk-hide-sm" style={{ display:"flex", gap:24 }}>
+            {P.navLinks.map(l => <a key={l.label} href={l.href} className="wk-nav-link">{l.label}</a>)}
+          </div>
+          <button data-cal-link="wikolabs-team/30min" data-cal-namespace="wk30min" data-cal-config='{"layout":"month_view"}' className="wk-btn"
+            style={{ background:gold, color:"#04080F", border:"none", borderRadius:8, padding:"8px 18px", fontWeight:700, fontSize:13.5, cursor:"pointer", fontFamily:"inherit" }}>
+            Reserver →
           </button>
-          <a href="https://wa.me/261386626100?text=Bonjour%2C%20je%20souhaite%20discuter%20de%20TriageIQ%20avec%20Wikolabs." target="_blank" rel="noopener noreferrer" className="px-4 py-2 rounded-lg text-white text-sm font-semibold" style={{ background: "#25d366", borderColor: "#25d366" }}>
-            💬 WhatsApp →
-          </a>
         </div>
       </nav>
 
-      {/* Hero */}
-      <section className="max-w-5xl mx-auto px-6 pt-20 pb-12">
-        <div className="inline-block px-3 py-1 rounded-md text-sm font-semibold mb-4" style={{ background: "#e2e8f0", color: "#475569" }}>
-          Triage IA — IT Support
+      {/* HERO */}
+      <section style={{ padding:"100px 40px 80px", maxWidth:1000, margin:"0 auto", textAlign:"center", position:"relative" }}>
+        <div style={{ position:"absolute", top:-60, left:"50%", transform:"translateX(-50%)", width:700, height:600, background:`radial-gradient(ellipse at 50% 30%, ${accentGlow} 0%, transparent 60%)`, pointerEvents:"none" }} />
+        <div style={{ display:"inline-flex", alignItems:"center", gap:8, marginBottom:24, background:accentDim, border:`1px solid ${accentBorder}`, borderRadius:100, padding:"6px 18px", animation:"fadeUp .5s ease both" }}>
+          <span style={{ width:7, height:7, borderRadius:"50%", background:accent, display:"inline-block", animation:"pulseDot 2s ease-in-out infinite" }} />
+          <span style={{ color:accent, fontSize:11.5, fontWeight:700, letterSpacing:"2px", textTransform:"uppercase" }}>{P.tagLabel}</span>
         </div>
-        <h1 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "clamp(2.5rem,6vw,5rem)", lineHeight: 1, letterSpacing: "-0.03em", color: "#1e293b" }} className="mb-4">
-          0 ticket non traité.<br /><span style={{ color: "#475569" }}>Jamais.</span>
+        <h1 className="wk-hero-title" style={{ fontSize:"clamp(2.6rem,6vw,5rem)", fontWeight:700, lineHeight:1.08, letterSpacing:"-0.03em", marginBottom:28, fontFamily:"'Instrument Serif',Georgia,serif", animation:"fadeUp .5s .08s ease both" }}>
+          {P.taglines.map((line, i) => (
+            <span key={i} style={{ display:"block", color:i===P.taglineAccentIdx?accent:txt1, fontStyle:i===P.taglineAccentIdx?"italic":"normal" }}>{line}</span>
+          ))}
         </h1>
-        <p className="text-lg text-slate-600 max-w-xl mb-6">
-          TriageIQ classe, priorise et route chaque ticket entrant en moins de 3 secondes. Fini les files d'attente, les SLA ratés et le chaos des priorités.
-        </p>
-        <div className="flex gap-8 mb-8">
-          {[["94%", "SLA respectés"], ["3s", "temps de triage"], ["-60%", "charge manuelle"]].map(([v, l]) => (
-            <div key={l}>
-              <div style={{ fontFamily: "var(--font-display)", fontSize: "2rem", fontWeight: 700, color: "#475569" }}>{v}</div>
-              <div className="text-sm text-slate-500">{l}</div>
+        <p style={{ fontSize:"1.1rem", color:txt2, lineHeight:1.72, maxWidth:580, margin:"0 auto 48px", animation:"fadeUp .5s .16s ease both" }}>{P.desc}</p>
+        <div style={{ display:"flex", flexWrap:"wrap", justifyContent:"center", gap:14, marginBottom:44, animation:"fadeUp .5s .24s ease both" }}>
+          {P.metrics.map(m => (
+            <div key={m.label} style={{ background:card, border:`1px solid ${border}`, borderRadius:18, padding:"14px 22px", textAlign:"center", minWidth:118 }}>
+              <div style={{ fontSize:"1.7rem", fontWeight:800, color:txt1, letterSpacing:"-1.5px", lineHeight:1 }}>{m.value}</div>
+              <div style={{ fontSize:"0.62rem", color:txt3, textTransform:"uppercase", letterSpacing:"1.5px", marginTop:5 }}>{m.label}</div>
             </div>
           ))}
         </div>
-        <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
-          <button data-cal-link="wikolabs-team/30min" data-cal-namespace="wk30min" data-cal-config='{"layout":"month_view"}' type="button" target="_blank" rel="noopener noreferrer" className="inline-block px-7 py-3.5 rounded-lg text-white font-semibold text-lg" style={{ background: "#475569" }}>
-            📅 Réserver un créneau →
+        <div style={{ display:"flex", flexWrap:"wrap", gap:12, justifyContent:"center", animation:"fadeUp .5s .32s ease both" }}>
+          <button data-cal-link="wikolabs-team/30min" data-cal-namespace="wk30min" data-cal-config='{"layout":"month_view"}' className="wk-btn"
+            style={{ background:gold, color:"#04080F", border:"none", borderRadius:10, padding:"14px 28px", fontWeight:700, fontSize:15, cursor:"pointer", display:"flex", alignItems:"center", gap:8, fontFamily:"inherit" }}>
+            📅 {P.ctaPrimary}
           </button>
-          <a href="https://wa.me/261386626100?text=Bonjour%2C%20je%20souhaite%20discuter%20de%20TriageIQ%20avec%20Wikolabs." target="_blank" rel="noopener noreferrer" className="inline-block px-7 py-3.5 rounded-lg text-white font-semibold text-lg" style={{ background: "#25d366", borderColor: "#25d366" }}>
-            💬 WhatsApp →
+          <a href={`https://wa.me/261386626100?text=Bonjour%2C%20je%20souhaite%20discuter%20de%20${encodeURIComponent(P.waText)}%20avec%20Wikolabs.`}
+            target="_blank" rel="noopener noreferrer" className="wk-wa"
+            style={{ background:"#25d366", color:"#fff", borderRadius:10, padding:"14px 28px", fontWeight:700, fontSize:15, textDecoration:"none", display:"flex", alignItems:"center", gap:8 }}>
+            💬 WhatsApp
           </a>
         </div>
       </section>
 
-      {/* Kanban Mockup */}
-      <section className="max-w-5xl mx-auto px-6 pb-16">
-        <div className="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden">
-          <div className="flex items-center gap-3 px-5 py-3 border-b border-slate-100 bg-slate-50">
-            <div className="w-2.5 h-2.5 rounded-full bg-red-400" />
-            <div className="w-2.5 h-2.5 rounded-full bg-amber-400" />
-            <div className="w-2.5 h-2.5 rounded-full bg-green-400" />
-            <span className="ml-2 text-sm text-slate-500 font-medium">TriageIQ — File tickets en direct</span>
-          </div>
-          <div className="grid grid-cols-3 gap-0 divide-x divide-slate-100">
-            {/* Critical */}
-            <div className="p-4">
-              <div className="flex items-center gap-2 mb-3">
-                <span className="w-2 h-2 rounded-full bg-red-500" />
-                <span className="text-xs font-bold text-red-600 uppercase tracking-wider">Critical</span>
-                <span className="ml-auto bg-red-100 text-red-600 text-xs px-2 py-0.5 rounded-full font-semibold">{tickets.critical.length}</span>
-              </div>
-              <div className="space-y-2">
-                {tickets.critical.map((t) => (
-                  <div key={t.id} className="border border-red-200 rounded-lg p-3 bg-red-50">
-                    <div className="text-xs text-red-400 mb-1">{t.id}</div>
-                    <div className="text-sm font-semibold text-slate-800">{t.title}</div>
-                    <div className="text-xs text-slate-500 mt-1">Il y a {t.time} — SLA: {t.sla}</div>
-                  </div>
-                ))}
-              </div>
+      {/* FEATURES */}
+      <section id="features" style={{ padding:"80px 40px", maxWidth:1100, margin:"0 auto" }}>
+        <div style={{ textAlign:"center", marginBottom:52 }}>
+          <p style={{ fontSize:"0.68rem", color:gold, letterSpacing:"3px", textTransform:"uppercase", fontWeight:700, marginBottom:14 }}>Fonctionnalites</p>
+          <h2 style={{ fontSize:"clamp(1.8rem,3.5vw,2.8rem)", fontWeight:700, color:txt1, letterSpacing:"-0.02em", fontFamily:"'Instrument Serif',Georgia,serif", lineHeight:1.15 }}>
+            Tout automatise, <em style={{ fontStyle:"italic", color:gold }}>rien a gerer</em>
+          </h2>
+        </div>
+        <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(300px,1fr))", gap:20 }}>
+          {P.features.map((f, i) => (
+            <div key={f.title} className="wk-card" style={{ background:card, border:`1px solid ${border}`, borderRadius:20, padding:"28px 28px 24px", position:"relative", overflow:"hidden" }}>
+              <div style={{ position:"absolute", top:0, left:0, right:0, height:2, background:`linear-gradient(90deg,transparent,${i===0?gold:accent},transparent)`, opacity:.6 }} />
+              <div style={{ fontSize:"2rem", marginBottom:16 }}>{i===0?"🔍":i===1?"🧠":"⚡"}</div>
+              <h3 style={{ fontSize:"1.05rem", fontWeight:700, color:txt1, marginBottom:10 }}>{f.title}</h3>
+              <p style={{ fontSize:"0.88rem", color:txt2, lineHeight:1.7, margin:0 }}>{f.desc}</p>
             </div>
-            {/* High */}
-            <div className="p-4">
-              <div className="flex items-center gap-2 mb-3">
-                <span className="w-2 h-2 rounded-full bg-amber-500" />
-                <span className="text-xs font-bold text-amber-600 uppercase tracking-wider">High</span>
-                <span className="ml-auto bg-amber-100 text-amber-600 text-xs px-2 py-0.5 rounded-full font-semibold">{tickets.high.length}</span>
-              </div>
-              <div className="space-y-2">
-                {tickets.high.map((t) => (
-                  <div key={t.id} className="border border-amber-200 rounded-lg p-3 bg-amber-50">
-                    <div className="text-xs text-amber-400 mb-1">{t.id}</div>
-                    <div className="text-sm font-semibold text-slate-800">{t.title}</div>
-                    <div className="text-xs text-slate-500 mt-1">Il y a {t.time} — SLA: {t.sla}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            {/* Medium */}
-            <div className="p-4">
-              <div className="flex items-center gap-2 mb-3">
-                <span className="w-2 h-2 rounded-full bg-slate-400" />
-                <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">Medium</span>
-                <span className="ml-auto bg-slate-100 text-slate-500 text-xs px-2 py-0.5 rounded-full font-semibold">{tickets.medium.length}</span>
-              </div>
-              <div className="space-y-2">
-                {tickets.medium.map((t) => (
-                  <div key={t.id} className="border border-slate-200 rounded-lg p-3 bg-slate-50">
-                    <div className="text-xs text-slate-400 mb-1">{t.id}</div>
-                    <div className="text-sm font-semibold text-slate-800">{t.title}</div>
-                    <div className="text-xs text-slate-500 mt-1">Il y a {t.time} — SLA: {t.sla}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </section>
 
-      {/* Features */}
-      <section className="bg-white border-y border-slate-200 py-16">
-        <div className="max-w-5xl mx-auto px-6">
-          <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "2rem", color: "#1e293b" }} className="text-center mb-10">
-            L'intelligence au coeur de votre support
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              { icon: "⚡", title: "Classification automatique", desc: "Catégorie, urgence et équipe assignée déterminées en 3s dès la réception du ticket, via LLM fine-tuné." },
-              { icon: "📊", title: "SLA Monitoring temps réel", desc: "Alertes avant dépassement, escalades automatiques et rapports hebdomadaires de performance par équipe." },
-              { icon: "🔀", title: "Routage multicanal", desc: "Email, Slack, Jira, Zendesk — TriageIQ capte tout et envoie chaque ticket au bon endroit, toujours." },
-            ].map((f) => (
-              <div key={f.title} className="p-6 rounded-xl border border-slate-200">
-                <div className="text-2xl mb-3">{f.icon}</div>
-                <h3 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1.1rem", color: "#1e293b" }} className="mb-2">{f.title}</h3>
-                <p className="text-sm text-slate-600 leading-relaxed">{f.desc}</p>
+      {/* HOW IT WORKS */}
+      <section id="process" style={{ padding:"80px 40px", background:bg2 }}>
+        <div style={{ maxWidth:860, margin:"0 auto" }}>
+          <div style={{ textAlign:"center", marginBottom:48 }}>
+            <p style={{ fontSize:"0.68rem", color:gold, letterSpacing:"3px", textTransform:"uppercase", fontWeight:700, marginBottom:14 }}>Comment ca marche</p>
+            <h2 style={{ fontSize:"clamp(1.8rem,3.5vw,2.8rem)", fontWeight:700, color:txt1, letterSpacing:"-0.02em", fontFamily:"'Instrument Serif',Georgia,serif" }}>
+              En place en <em style={{ fontStyle:"italic", color:accent }}>10 minutes</em>
+            </h2>
+          </div>
+          <div style={{ display:"flex", flexDirection:"column", gap:14 }}>
+            {P.steps.map((s, i) => (
+              <div key={s.num} style={{ display:"flex", alignItems:"flex-start", gap:22, background:card, border:`1px solid ${border}`, borderRadius:18, padding:"22px 26px" }}>
+                <div style={{ flexShrink:0, width:46, height:46, background:i===0?goldDim:accentDim, border:`1px solid ${i===0?goldBorder:accentBorder}`, borderRadius:14, display:"flex", alignItems:"center", justifyContent:"center", color:i===0?gold:accent, fontWeight:800, fontSize:15 }}>
+                  {s.num}
+                </div>
+                <div>
+                  <h3 style={{ fontSize:"1rem", fontWeight:700, color:txt1, marginBottom:6, lineHeight:1.3 }}>{s.title}</h3>
+                  <p style={{ fontSize:"0.87rem", color:txt2, lineHeight:1.7, margin:0 }}>{s.desc}</p>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-16 text-center" style={{ background: "#1e293b" }}>
-        <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "2.2rem", color: "white" }} className="mb-3">
-          Votre backlog, vidé. Vos SLA, respectés.
-        </h2>
-        <p className="text-slate-400 mb-8">Audit gratuit de votre flux tickets en 48h.</p>
-        <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
-          <button data-cal-link="wikolabs-team/30min" data-cal-namespace="wk30min" data-cal-config='{"layout":"month_view"}' type="button" target="_blank" rel="noopener noreferrer" className="inline-block px-8 py-4 rounded-lg font-semibold text-lg" style={{ background: "#475569", color: "white" }}>
-            📅 Réserver un créneau →
-          </button>
-          <a href="https://wa.me/261386626100?text=Bonjour%2C%20je%20souhaite%20discuter%20de%20TriageIQ%20avec%20Wikolabs." target="_blank" rel="noopener noreferrer" className="inline-block px-8 py-4 rounded-lg font-semibold text-lg" style={{ background: "#25d366", borderColor: "#25d366" }}>
-            💬 WhatsApp →
-          </a>
+      {/* TESTIMONIALS */}
+      <section style={{ padding:"80px 40px", maxWidth:900, margin:"0 auto" }}>
+        <div style={{ textAlign:"center", marginBottom:44 }}>
+          <p style={{ fontSize:"0.68rem", color:gold, letterSpacing:"3px", textTransform:"uppercase", fontWeight:700, marginBottom:14 }}>Temoignages</p>
+          <h2 style={{ fontSize:"clamp(1.6rem,3vw,2.4rem)", fontWeight:700, color:txt1, fontFamily:"'Instrument Serif',Georgia,serif" }}>Ce qu'en disent nos clients</h2>
+        </div>
+        <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(340px,1fr))", gap:20 }}>
+          {P.testimonials.map((t, i) => (
+            <div key={i} style={{ background:card, border:`1px solid ${border}`, borderLeft:`3px solid ${i===0?gold:accent}`, borderRadius:20, padding:"26px 26px 22px" }}>
+              <p style={{ fontSize:"0.92rem", color:txt2, lineHeight:1.75, fontStyle:"italic", marginBottom:20 }}>&ldquo;{t.quote}&rdquo;</p>
+              <div style={{ display:"flex", alignItems:"center", gap:12 }}>
+                <div style={{ width:38, height:38, borderRadius:"50%", background:i===0?goldDim:accentDim, border:`1px solid ${i===0?goldBorder:accentBorder}`, display:"flex", alignItems:"center", justifyContent:"center", fontSize:16 }}>👤</div>
+                <div>
+                  <div style={{ fontSize:"0.9rem", fontWeight:700, color:txt1 }}>{t.author}</div>
+                  <div style={{ fontSize:"0.72rem", color:txt3 }}>{t.role}</div>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
-      <footer className="text-center py-6 text-sm text-slate-400 bg-white border-t border-slate-100">
-        <p>&copy; 2025 TriageIQ &mdash; Un produit Wikolabs</p>
-        <div className="flex flex-wrap justify-center gap-4 mt-2 text-xs text-slate-400">
-          <a href="mailto:team@wikolabs.com" className="hover:text-slate-600 transition-colors">team@wikolabs.com</a>
-          <span>·</span>
-          <a href="tel:+261386626100" className="hover:text-slate-600 transition-colors">+261 38 66 261 00</a>
-          <span>·</span>
-          <button data-cal-link="wikolabs-team/30min" data-cal-namespace="wk30min" data-cal-config='{"layout":"month_view"}' type="button" target="_blank" rel="noopener noreferrer" className="hover:text-slate-600 transition-colors" style={{cursor:"pointer",background:"none",border:"none",padding:0,font:"inherit",color:"inherit",textDecoration:"none"}}>Prendre RDV</button>
+      {/* CTA */}
+      <section id="cta" style={{ padding:"0 40px 100px", maxWidth:860, margin:"0 auto" }}>
+        <div style={{ background:card, border:`1px solid ${goldBorder}`, borderRadius:24, padding:"64px 48px", textAlign:"center", backgroundImage:`radial-gradient(ellipse at 50% 0%, ${goldDim} 0%, transparent 65%)` }}>
+          <p style={{ fontSize:"0.68rem", color:gold, letterSpacing:"3px", textTransform:"uppercase", fontWeight:700, marginBottom:16 }}>Demarrer</p>
+          <h2 style={{ fontSize:"clamp(1.8rem,3.5vw,2.8rem)", fontWeight:700, color:txt1, marginBottom:14, letterSpacing:"-0.02em", fontFamily:"'Instrument Serif',Georgia,serif" }}>{P.ctaTitle}</h2>
+          <p style={{ color:txt2, fontSize:"1rem", marginBottom:36, lineHeight:1.7 }}>{P.ctaDesc}</p>
+          <div style={{ display:"flex", flexWrap:"wrap", gap:12, justifyContent:"center" }}>
+            <button data-cal-link="wikolabs-team/30min" data-cal-namespace="wk30min" data-cal-config='{"layout":"month_view"}' className="wk-btn"
+              style={{ background:gold, color:"#04080F", border:"none", borderRadius:10, padding:"14px 28px", fontWeight:700, fontSize:15, cursor:"pointer", display:"flex", alignItems:"center", gap:8, fontFamily:"inherit" }}>
+              📅 {P.ctaPrimary}
+            </button>
+            <a href={`https://wa.me/261386626100?text=Bonjour%2C%20je%20souhaite%20discuter%20de%20${encodeURIComponent(P.waText)}%20avec%20Wikolabs.`}
+              target="_blank" rel="noopener noreferrer" className="wk-wa"
+              style={{ background:"#25d366", color:"#fff", borderRadius:10, padding:"14px 28px", fontWeight:700, fontSize:15, textDecoration:"none", display:"flex", alignItems:"center", gap:8 }}>
+              💬 WhatsApp
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer style={{ borderTop:`1px solid ${border}`, padding:"32px 40px" }}>
+        <div style={{ maxWidth:1200, margin:"0 auto", display:"flex", flexWrap:"wrap", justifyContent:"space-between", alignItems:"center", gap:16 }}>
+          <div>
+            <span style={{ fontWeight:800, fontSize:16, color:txt1 }}>{P.name}</span><span style={{ color:gold }}>.</span>
+            <span style={{ display:"block", fontSize:12, color:txt3, marginTop:3 }}>{P.footerTagline}</span>
+          </div>
+          <p style={{ fontSize:13, color:txt3 }}>© 2026 {P.name} — Un produit <a href="https://wikolabs.com" style={{ color:txt2, textDecoration:"none" }}>Wikolabs</a></p>
+          <div style={{ display:"flex", flexWrap:"wrap", gap:16, fontSize:13, alignItems:"center" }}>
+            <a href="mailto:team@wikolabs.com" style={{ color:txt3, textDecoration:"none" }}>team@wikolabs.com</a>
+            <span style={{ color:txt3 }}>·</span>
+            <button data-cal-link="wikolabs-team/30min" data-cal-namespace="wk30min" data-cal-config='{"layout":"month_view"}' style={{ background:"none", border:"none", color:txt3, fontSize:13, cursor:"pointer", fontFamily:"inherit", padding:0 }}>Prendre RDV</button>
+          </div>
         </div>
       </footer>
-    </main>
+    </div>
   );
 }
